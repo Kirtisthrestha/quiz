@@ -124,16 +124,8 @@ int main(void)
     char guess,opt;
     int score;
 
-        printf("\t\t\tC PROGRAM QUIZ GAME\n");
-        printf("\n\t\t______________");
-        printf("\n\t\t\t   WELCOME ");
-        printf("\n\t\t\t      to ");
-        printf("\n\t\t\t   THE GAME ");
-        printf("\n\t\t______________");
-        printf("\n\t\t______________");
-        printf("\n\t\t   BECOME A MILLIONAIRE!!!!!!!!!!!    ") ;
-        printf("\n\t\t______________");
-        printf("\n\t\t______________");
+        printf("\t\t\tC PROGRAM QUIZ GAME\n\n\n");
+       
         printf("\n\t\t > Enter S to start the game");
         printf("\n\t\t > press H for help");
         printf("\n\t\t > press Q to quit");
