@@ -1,5 +1,3 @@
-// Quix Game
-
 #include <stdio.h>
 #include <ctype.h>
 
@@ -7,19 +5,20 @@ void help(void)
 {
     printf("\n\n                                HELP");
     printf("\n -------------------------------------------------------------------------");
-    printf("\n ......................... C program Quiz Game............................");
-    printf("\n >> You will be asked a total of 5 questions in each theme");
-    printf("\n >> You will be given 4 guesss and you have to press 1, 2 ,3 or 4 for the right guess");
-    printf("\n >> no points will be deducted for the incorrect answer");
-	printf("\n\n\t***************************BEST OF LUCK********************************");
-	printf("\n\n\t*****This C PROGRAM QUIZ GAME is developed by Kirti Shrestha*****\n\n\n");
+    printf("\n ......................... C program Quiz Game...........");
+    printf("\n >> You will be asked a total of 5 questions in every individuals theme");
+    printf("\n >> You will be given 4 guesss and you have to press 1, 2 ,3 or 4 for the");
+    printf("\n    right guess");
+    printf("\n >> No negative marking for wrong answers");
+	printf("\n\n\t********BEST OF LUCK************");
+	printf("\n\n\t***Quiz Game Developer: Kirti Shrestha***\n\n\n");
 }
 
-void score_single(int score, char name[], char theme[])
+void score_display_single(int score, char name[],char theme[])
 {
     printf("\n\t\t_____________________");
     printf("\n\n\t\t\t\t\tRESULt");
-    printf("\n\n\n\t\tPLayer name: %s\t\t\tAvailable score: 5\n\n",name);
+    printf("\n\n\n\t\tPlayer name: %s\t\t\tAvailable score: 5\n\n",name);
     printf("\n\t\tYou scored : %i",score);
 
     if(score>3)
@@ -35,14 +34,14 @@ void score_single(int score, char name[], char theme[])
     }
 }
 
-void score_pack(int tscore, char tname[])
+void score_display_pack(int tscore, char tname[])
 {
     printf("\n\t\t_____________________");
     printf("\n\n\t\t\t\t\tRESULt");
-    printf("\n\n\n\t\tPLayer name: %s\t\t\tFull score: 15\n\n",tname);
+    printf("\n\n\n\t\tPlayer name: %s\t\t\tAvailable score: 15\n\n",tname);
     printf("\n\t\tYou scored : %i",tscore);
 
-    if(tscore>10)
+    if(tscore>7)
     {
         printf("\n\n\n\t\tComments: ");
         printf("\n\n\t\tYou destroyed the QUIZ!");
@@ -50,7 +49,7 @@ void score_pack(int tscore, char tname[])
     }
     else{
         printf("\n\n\n\t\tComments: ");
-        printf("\n\n\t\tTry not to go over the board.\n\n\t\tStart with a single theme!\n");
+        printf("\n\n\t\tTry not to go over the baord.\n\n\t\tStart with a single theme!\n");
         printf("\n\t\t_____________________\n\n\n");
     }
 }
@@ -65,6 +64,7 @@ void Earth(void)
         printf("\n\n\t\t--------Introduce yourself--------");
         printf("\n\n\n\t\tPlayer enter your name: ");
         scanf("%s",ename);
+
 
         printf("\n\t\t______________");
         printf("\n\n\t\tLet's begin the QUIZ %s!",ename);
@@ -101,7 +101,7 @@ void Earth(void)
 
         printf("\n\n\t\t**Question no.3**");
 		printf("\n\n\nWhich is thelargest desert in the world?");
-		printf("\n\n1.Sahara\t\t\t2.Antartica\n\n3.Great Australian Desert\t\t4.Arctic\n\n");
+		printf("\n\n1.Sahara\t\t\t\t2.Antartica\n\n3.Great Australian Desert\t\t4.Arctic\n\n");
         printf("enter your guess: ");
         scanf("%i",&e3);
 		if (e3==2)
@@ -115,7 +115,7 @@ void Earth(void)
 
         printf("\n\n\t\t**Question no.4**");
 		printf("\n\n\nWhich is the world's smallest country?");
-		printf("\n\n1.San Marino\t\t2.Monaco\n\n3.Vatian City\t\t4.Palau\n\n");
+		printf("\n\n1.San Marino\t\t2.Monaco\n\n3.Vatican City\t\t4.Palau\n\n");
         printf("enter your guess: ");
         scanf("%i",&e4);
 		if (e4==3)
@@ -141,10 +141,15 @@ void Earth(void)
             printf("\n\nWrong!!! The correct answer is 4.China");
 		}
 
-        score_single(escore,ename,theme);
+        score_display_single(escore,ename,theme);
+
+        FILE *fptr;
+        fptr = fopen("score.csv","a");
+        fprintf(fptr,"%s, %i, 5, %s\n",ename, escore, theme);
+        fclose(fptr);
 }
 
-void Solar(void)
+void Solar()
 {
     int sscore=0;
     char sname[10];
@@ -161,7 +166,7 @@ void Solar(void)
 
         printf("\n\n\t\t**Question no.1**");
 		printf("\n\nWhich planet is closest to planet Earth?");
-		printf("\n\n1.Mercury\t\t2.Jupiter\n\n3.Venus\t\t\t4.Saturn\n\n");
+		printf("\n\n1.Mercury\t\t2.Jupiter\n\n3.Venus\t\t4.Saturn\n\n");
         printf("enter your guess: ");
         scanf("%i",&s1);
 		if (s1==1)
@@ -229,8 +234,12 @@ void Solar(void)
             printf("\n\nWrong!!! The correct answer is 4.Venus");
 		}
 
-        score_single(sscore,sname,theme);
+        score_display_single(sscore,sname,theme);
 
+        FILE *fptr;
+        fptr = fopen("score.csv","a");
+        fprintf(fptr,"%s, %i, 5, %s\n",sname, sscore, theme);
+        fclose(fptr);
 }
 
 void Uni(void)
@@ -278,7 +287,7 @@ void Uni(void)
 
         printf("\n\n\t\t**Question no.3**");
 		printf("\n\n\nWhat creates a black whole?");
-		printf("\n\n1.Dying star\t\t\t2.Birth of star\n\n3.Collin of star\t\t4.Death of an galaxy\n\n");
+		printf("\n\n1.Dying star\t\t2.Birth of star\n\n3.Collin of star\t\t4.Death of an galaxy\n\n");
         printf("enter your guess: ");
         scanf("%i",&u3);
 		if (u3==1)
@@ -318,7 +327,12 @@ void Uni(void)
             printf("\n\nWrong!!! The correct answer is 1.Gaseous cavity");
 		}
 
-        score_single(uscore,uname,theme);
+        score_display_single(uscore,uname,theme);
+
+        FILE *fptr;
+        fptr = fopen("score.csv","a");
+        fprintf(fptr,"%s, %i, 5, %s\n",uname, uscore, theme);
+        fclose(fptr);
 }
 
 void pack(void)
@@ -536,7 +550,7 @@ void pack(void)
 
         printf("\n\n\t\t**Question no.15**");
         printf("\n\n\nWhat is cosmic cliff?");
-        printf("\n\n1.Gaseous cavity\t\t2.Nebula\n\n3.Blackhole\t\t\t4.Star\n\n");
+        printf("\n\n1.Gaseous cavity\t\t2.Nebula\n\n3.Blackhole\t\t4.Star\n\n");
         printf("enter your guess: ");
         scanf("%i",&u5);
         if (u5==1)
@@ -548,25 +562,28 @@ void pack(void)
             printf("\n\nWrong!!! The correct answer is 1.Gaseous cavity");
 		}
 
-        score_pack(tscore,tname);
+        score_display_pack(tscore,tname);
+
+        FILE *fptr;
+        fptr = fopen("score.csv","a");
+        fprintf(fptr,"%s, %i, 15, pack\n",tname, tscore);
+        fclose(fptr);
 }
 
 int main(void)
 {
-    char guess, opt;
+    char guess,opt;
     int score;
 
         printf("\n\n\n\t\t\t C PROGRAM QUIZ GAME\n");
         printf("\n\t\t______________");
         printf("\n\n\t\t > Enter S to start the game");
-        printf("\n\t\t > Enter H for instructions");
+        printf("\n\t\t > Enter H for help and instructions");
         printf("\n\t\t > Enter Q to quit the Quiz");
         printf("\n\t\t______________");
-
-    
+  
         printf("\n\n\n\t\tEnter your choice: ");
         scanf("%c",&guess);
-
 
     if(toupper(guess)=='H')
     {
