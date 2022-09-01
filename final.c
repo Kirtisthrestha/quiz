@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
-// Introduction 
+// Instructions 
+
 void help(void)
 {
     printf("\n\n                                HELP");
@@ -12,9 +13,9 @@ void help(void)
     printf("\n >>> You will be asked a total of 5 questions in every individuals theme");
     printf("\n >>> You will be given 4 guesses and you have to press 1, 2 ,3 or 4 for the right guess");
     printf("\n >>> No points will be deducted for the incorrect answer");
-	printf("\n\n\t***************************BEST OF LUCK********************************");
-	printf("\n\n\t**************Quiz Game Developer: Kirti Shrestha**************\n\n\n");
 }
+
+// Single Theme Score
 
 void score_single(int score, char name[],char theme[])
 {
@@ -36,6 +37,8 @@ void score_single(int score, char name[],char theme[])
     }
 }
 
+// Multiple Theme Score
+
 void score_pack(int tscore, char tname[])
 {
     printf("\n\t\t_____________________");
@@ -55,6 +58,8 @@ void score_pack(int tscore, char tname[])
         printf("\n\t\t_____________________\n\n\n");
     }
 }
+
+// Theme Earth 
 
 void Earth(void)
 {
@@ -143,13 +148,19 @@ void Earth(void)
             printf("\n\nWrong!!! The correct answer is 4. China");
 		}
 
+        // Score for Theme Earth
+
         score_single(escore,ename,theme);
+
+        // File Handling
 
         FILE *fptr;
         fptr = fopen("score.csv","a");
         fprintf(fptr,"%s, %i, 5, %s\n",ename, escore, theme);
         fclose(fptr);
 }
+
+// Theme Solar System
 
 void Solar()
 {
@@ -163,17 +174,18 @@ void Solar()
     scanf("%s", sname);
 
     printf("\n\t\t______________");
-    printf("\n\n\t\tLet's begin the QUIZ, %s!",sname);
+    printf("\n\n\t\tLet's begin the QUIZ, %s!", sname);
     printf("\n\t\t______________\n\n");
 
         printf("\n\n\t\t**Question no.1**");
 		printf("\n\nWhich planet is closest to planet Earth?");
 		printf("\n\n1.Mercury\t\t2.Jupiter\n\n3.Venus\t\t\t\t4.Saturn\n\n");
         printf("enter your guess: ");
-        scanf("%i",&s1);
+        scanf("%i", &s1);
 		if (s1==1)
 		{
-			printf("\n\nCorrect!!!");sscore++;
+			printf("\n\nCorrect!!!"); 
+            sscore++;
         }
 		else
 		{
@@ -236,13 +248,19 @@ void Solar()
             printf("\n\nWrong!!! The correct answer is 4. Venus");
 		}
 
-        score_single(sscore,sname,theme);
+        // Score for Theme Solar System
+
+        score_single(sscore, sname, theme);
+
+        // File handling 
 
         FILE *fptr;
         fptr = fopen("score.csv","a");
         fprintf(fptr,"%s, %i, 5, %s\n",sname, sscore, theme);
         fclose(fptr);
 }
+
+// Theme Universe
 
 void Uni(void)
 {
@@ -329,13 +347,19 @@ void Uni(void)
             printf("\n\nWrong!!! The correct answer is 1.Gaseous cavity");
 		}
 
-        score_single(uscore,uname,theme);
+        // Score for Theme Universe
+
+        score_single(uscore, uname, theme);
+
+        // File Handling
 
         FILE *fptr;
         fptr = fopen("score.csv","a");
         fprintf(fptr,"%s, %i, 5, %s\n",uname, uscore, theme);
         fclose(fptr);
 }
+
+// Whole Theme 
 
 void pack(void)
 {
@@ -564,6 +588,8 @@ void pack(void)
             printf("\n\nWrong!!! The correct answer is 1.Gaseous cavity");
 		}
 
+        // total score for whole Theme
+
         score_pack(tscore,tname);
 
         FILE *fptr;
@@ -574,12 +600,13 @@ void pack(void)
 
 int main(void)
 {
-    char guess, opt;
-    int score;
+    char guess;
+
+        // Introduction
 
         printf("\n\n\n\t\t\t C PROGRAM QUIZ GAME\n");
         printf("\n\t\t______________");
-        printf("\n\n\t\t >>> Enter S to start the game");
+        printf("\n\t\t >>> Enter S to start the game");
         printf("\n\t\t >>> Enter H for help and instructions");
         printf("\n\t\t >>> Enter Q to quit the Quiz");
         printf("\n\t\t______________");
@@ -595,11 +622,14 @@ int main(void)
     else if(toupper(guess)=='S')
     {
         int theme;
+
+        // Allowing User to choose Theme 
+
         printf("\n\n\t\t---- Okay now let's choose a theme for you now. Below are some themes you can choose from ----");
         printf("\n\n\n\t\t\t\t\tChoose a theme\n");
-        printf("\n\t\t____________________");
+        printf("\n\t\t________________________________________________________________________________________________");
         printf("\n\n\t\t 1.Earth\t\t2.Solar System\t\t3.Universe");
-        printf("\n\t\t____________________\n\n");
+        printf("\n\t\t________________________________________________________________________________________________\n\n");
         printf("\n\t\t > Enter 1 to start the Earth theme");
         printf("\n\t\t > Enter 2 for start the Solar System theme");
         printf("\n\t\t > Enter 3 to start the Universe theme");
@@ -607,6 +637,8 @@ int main(void)
 
         printf("\n\n\n\t\tEnter your choice: ");
         scanf("%i",&theme);
+
+        
 
         if(theme==1)
         {
